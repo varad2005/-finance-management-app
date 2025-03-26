@@ -1,18 +1,19 @@
 [build]
-  command = "bash netlify-build.sh"
-  publish = "client/dist"
-  functions = "netlify/functions"
+  # Ensure the build command is correct and netlify-build.sh exists
+  command = "bash netlify-build.sh"  # Make sure this script exists and is executable
+  publish = "client/dist"  # Ensure your build output folder is 'client/dist'
+  functions = "netlify/functions"  # Ensure your Netlify functions are in this directory
 
 [dev]
-  command = "npm run dev"
-  port = 5000
+  command = "npm run dev"  # This should match your local dev command
+  port = 5000  # Make sure this port is available for local development
 
 [[redirects]]
-  from = "/api/*"
-  to = "/.netlify/functions/api/:splat"
+  from = "/api/*"  # Make sure this matches the API endpoint path
+  to = "/.netlify/functions/api/:splat"  # This should match your serverless function path
   status = 200
 
 [[redirects]]
-  from = "/*"
-  to = "/index.html"
+  from = "/*"  # This catches all other routes
+  to = "/index.html"  # This is common for single-page applications (SPA)
   status = 200
