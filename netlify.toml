@@ -1,6 +1,16 @@
 [build]
-  publish = "dist/public"
-  command = "npm run build"
+  command = "bash netlify-build.sh"
+  publish = "client/dist"
+  functions = "netlify/functions"
+
+[dev]
+  command = "npm run dev"
+  port = 5000
+
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/api/:splat"
+  status = 200
 
 [[redirects]]
   from = "/*"
